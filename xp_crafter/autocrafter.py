@@ -2,8 +2,8 @@ import json
 import pyautogui as pg
 from collections import deque
 from itertools import chain
-from math import ceil
 from time import sleep
+
 
 with open('config.json', 'r') as f:
     data = json.load(f)
@@ -15,14 +15,17 @@ bl, crafting_tl, spacing, crafting_result = (
 )
 
 BUCKET_PATTERN = [
-    [0, 1, 1],
-    [0, 0, 1],
+    [1, 0, 1],
+    [0, 0, 0],
     [0, 0, 0]
 ]
 pg.PAUSE = 0.03
 DRY_RUN = False
+TARGET_QUANTITY = 10
+
 # CURRENT_LEVEL = 30 # This assumes the tank is already full
-tank_buckets = 53
+recipe_buckets = sum([sum(x) for x in BUCKET_PATTERN])
+tank_buckets = recipe_buckets * TARGET_QUANTITY + 9 + 1
 
 # Set up: look against tank bottom edge flat against drain
 
@@ -56,7 +59,7 @@ while available_essence >= 9000:
     pg.press('1') # Make sure leftmost buckets are selected
     sleep(0.1)
     for i in range(empty_bucket_counter):
-        if available_essence > 1000:
+        if available_essence >= 1000:
             empty_bucket_counter -= 1
             available_essence -= 1000
             if not DRY_RUN:
@@ -67,7 +70,7 @@ while available_essence >= 9000:
     with pg.hold('w'):
         sleep(0.5)
     pg.rightClick()
-    sleep(4) # Wait for crafting window to pop up
+    sleep(2) # Wait for crafting window to pop up
 
     available_buckets = deque([(bl[0] + spacing*x, bl[1]) for x in range(0 if empty_bucket_counter == 0 else 1, 9 - empty_bucket_counter)])
     while len(available_buckets) >= num_buckets:
