@@ -15,13 +15,13 @@ bl, crafting_tl, spacing, crafting_result = (
 )
 
 BUCKET_PATTERN = [
-    [1, 0, 1],
-    [0, 0, 0],
-    [0, 0, 0]
+    [1, 1, 1],
+    [1, 1, 1],
+    [1, 1, 1]
 ]
 pg.PAUSE = 0.03
 DRY_RUN = False
-TARGET_QUANTITY = 10
+TARGET_QUANTITY = 22
 
 # CURRENT_LEVEL = 30 # This assumes the tank is already full
 recipe_buckets = sum([sum(x) for x in BUCKET_PATTERN])
@@ -99,25 +99,25 @@ while available_essence >= 9000:
     # Now buckets should be in bottom left and output in bottom left + 1 slot
     # Move product to inventory
     if not DRY_RUN:
-        if first_run and num_buckets == 1:
-            sleep(0.2)
-            # bucket is in top left, product is in bottom left. need to swap
-            pg.moveTo(*bl)
-            with pg.hold('shift'):
-                pg.click()
-            pg.click(
-                bl[0],
-                bl[1] - spacing*3
-            )
-            pg.click(*bl)
-        elif num_buckets > 1:
-            sleep(0.2)
-            pg.moveTo(
-                bl[0] + spacing*(num_buckets-1),
-                bl[1]
-            )
-            with pg.hold('shift'):
-                pg.click()
+        # if first_run and num_buckets == 1:
+        #     sleep(0.2)
+        #     # bucket is in top left, product is in bottom left. need to swap
+        #     pg.moveTo(*bl)
+        #     with pg.hold('shift'):
+        #         pg.click()
+        #     pg.click(
+        #         bl[0],
+        #         bl[1] - spacing*3
+        #     )
+        #     pg.click(*bl)
+        # elif num_buckets > 1:
+        sleep(0.2)
+        pg.moveTo(
+            bl[0] + spacing*(num_buckets-1),
+            bl[1]
+        )
+        # with pg.hold('shift'):
+        #     pg.click()
         sleep(0.2)
 
     pg.press('esc')
