@@ -13,9 +13,19 @@ bl, crafting_tl, spacing, crafting_result = (
 
 pg.PAUSE = 0.01
 
+USE_ALL_SLOTS = True
+
 pg.moveTo(bl[0], bl[1]+spacing)
 pg.click()
-sleep(0.5) # Need to wait for window focus
+sleep(1) # Need to wait for window focus
 pg.press('esc')
-for i in range(64):
-    pg.rightClick()
+
+if USE_ALL_SLOTS:
+    for slot in range(1, 10):
+        pg.press(str(slot))
+        sleep(0.5)
+        for i in range(80):
+            pg.rightClick()
+else:
+    for i in range(64):
+        pg.rightClick()

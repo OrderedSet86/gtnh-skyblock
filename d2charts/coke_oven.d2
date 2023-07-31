@@ -1,0 +1,90 @@
+required {
+    sand: 2st+47 sand
+    clay: 1st+41 clay
+    form: wooden brick form
+    unfired: 104 unfired coke oven brick
+    burn: 104 burn items {
+        style: { stroke: tomato }
+    }
+    cokebrick: 104 coke oven bricks
+    cokeoven: 26 coke oven brick {
+        style: { stroke: orange }
+    }
+    crafting: crafting table
+    wood: 2 wood
+    flint: 2 flint
+    knife: flint knife
+    knifeflint: 1 flint
+    stick: 1 stick
+    plank: 2 planks
+    stickwood: 1 wood
+    furnace
+    cobble: 6 cobblestone
+    furnaceflint: 3 flint
+
+    sand -> unfired
+    clay -> unfired
+    form -> unfired
+    unfired -> cokebrick
+    burn -> cokebrick
+    cokebrick -> cokeoven
+    wood -> crafting
+    flint -> crafting
+    crafting -> unfired
+    knife -> form
+    knifeflint -> knife
+    stick -> knife
+    plank -> stick
+    stickwood -> plank
+    furnace -> cokebrick
+    cobble -> furnace
+    furnaceflint -> furnace
+}
+
+paper {
+    paper: 4 paper
+    manual {
+        woodpulp: 16 wood pulp
+        bucket: fired clay bucket
+        burn: 1 burn item {
+            style: { stroke: tomato }
+        }
+        claydust: 5 clay dust
+        clay: 20 clay
+        paper: 4 paper
+        water: 2 water
+        mortar: 1 + 1/8 flint mortar
+        cobblestone: 10 cobblestone
+        stoneburn: 10 burn item {
+            style: { stroke: tomato }
+        }
+        stone: 10 stone
+        flint: 4 flint
+        filledbucket: water buckets
+
+        clay -> claydust
+        claydust -> bucket
+        burn -> bucket
+        water -> filledbucket
+        bucket -> filledbucket
+        woodpulp -> paper
+        filledbucket -> paper
+        stone -> mortar
+        flint -> mortar
+        mortar -> claydust
+        cobblestone -> stone
+        stoneburn -> stone
+        mortar -> woodpulp
+    }
+    village {
+        paper: find 4 paper in birch witchery house
+    }
+    manual.paper -> paper {
+        style: { stroke-dash: 3 }
+    }
+    village.paper -> paper {
+        style: { stroke-dash: 3 }
+    }
+}
+
+paper.paper -> required.form

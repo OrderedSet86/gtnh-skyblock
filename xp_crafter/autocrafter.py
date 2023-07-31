@@ -14,18 +14,23 @@ bl, crafting_tl, spacing, crafting_result = (
     data['crafting_result'],
 )
 
-BUCKET_PATTERN = [
-    [1, 1, 1],
-    [1, 1, 1],
-    [1, 1, 1]
-]
+BUCKET_STRING = '''
+111
+100
+000
+'''
+BUCKET_PATTERN = [x for x in BUCKET_STRING.split('\n') if x != '']
+BUCKET_PATTERN = [[int(y) for y in list(x)] for x in BUCKET_PATTERN]
+
 pg.PAUSE = 0.03
 DRY_RUN = False
-TARGET_QUANTITY = 22
+TARGET_QUANTITY = 16
+TANK_ACTUAL = 186
 
 # CURRENT_LEVEL = 30 # This assumes the tank is already full
 recipe_buckets = sum([sum(x) for x in BUCKET_PATTERN])
 tank_buckets = recipe_buckets * TARGET_QUANTITY + 9 + 1
+tank_buckets = min(tank_buckets, TANK_ACTUAL)
 
 # Set up: look against tank bottom edge flat against drain
 

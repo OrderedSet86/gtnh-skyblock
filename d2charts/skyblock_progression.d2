@@ -1,0 +1,199 @@
+agedirt: Dirt Age {
+    die: Die
+    mobfarm: Make Mob Spawning Platform/Farm
+    mdi: "[Infernal Mobs] Infernal Mob Drops"
+    mdu: "[Infernal Mobs] Ultra Mob Drops"
+    mde: "[Infernal Mobs] Elite Mob Drops"
+    ctl: Common Thaumcraft Lootbag
+    czv: Convert Zombie Villager
+    sapling: Farmer or Lumberjack with Sapling Trade {
+        style: { stroke: forestgreen }
+    }
+    heretic: Heretic with Profane Wand Trade
+    librarian: Librarian with Glass + Book Trade
+    beekeeper: Beekeper with Simmering Comb Trade
+
+    die -> mobfarm: dirt
+    mobfarm -> mdi: infernal mobs
+    mobfarm -> mdu: infernal mobs
+    mobfarm -> mde: infernal mobs
+    mdi -> ctl
+    mdu -> ctl
+    mde -> ctl
+    mobfarm -> czv: zombie villager
+    mobfarm -> czv: witch weakness potion entity {
+        style: { stroke-dash: 3 }
+    }
+    ctl -> czv: splash weakness potion {
+        style: { stroke-dash: 3 }
+    }
+    mdu -> czv: golden apple
+    czv -> sapling: villager
+    czv -> heretic: villager
+    czv -> librarian: villager
+    czv -> beekeeper: villager
+}
+
+agewood: Wood Age {
+    crops: Crossbreed Crops
+    grass: Make Grass from IC2 Weeds
+    passive: Passive Mob Spawning
+    bed: Skip Night (Bed)
+    copper: "[Crops] Copper Oreberry or Cyprium"
+    tin: "[Crops] Tin Oreberry or Stagnium"
+    craft: Crafting Table
+    cobble: Mine Cobblestone
+    drowning: Spawn Drowning Creeper
+    furnace: Craft Furnace
+    stone: Smelt Stone
+    mortar: Craft Mortar
+    bronze: Mix and Smelt Bronze
+    tank: Craft XP Drain and Railcraft Iron Tank {
+        style: { stroke: forestgreen }
+    }
+    researchtable: Craft Research Table
+    gttools: Earliest GT Tools
+
+    crops -> grass: weeds
+    grass -> passive: grass
+    passive -> bed: wool
+    crops -> copper
+    crops -> tin
+    craft -> cobble: tools
+    drowning -> cobble: cobblestone
+    cobble -> furnace: cobblestone
+    furnace -> stone: furnace
+    cobble -> stone: cobblestone
+    stone -> mortar: stone
+    mortar -> bronze: mortar
+    copper -> bronze: copper
+    tin -> bronze: tin
+    bronze -> tank: bronze
+    gttools -> crops: tools
+    stone -> gttools
+    gttools -> researchtable
+}
+agedirt.sapling -> agewood.crops: wood {
+    style: { stroke: tomato }
+}
+agedirt.sapling -> agewood.craft: wood {
+    style: { stroke: tomato }
+}
+agedirt.mobfarm -> agewood.craft: flint {
+    style: { stroke: tomato }
+}
+agedirt.mobfarm -> agewood.tank: iron {
+    style: { stroke: tomato }
+}
+agedirt.heretic -> agewood.researchtable: profane wand {
+    style: { stroke: tomato }
+}
+
+agexp: Pre-LV XP Bucket {
+    xpbucket: XP Bucket Crafting
+    alloysmelter: Steam Alloy Smelter
+    bctank: Craft BC Tank
+    piston: Craft Piston
+    rubber: Craft Rubber Bar
+    cokeoven: Coke Oven
+    compressor: Steam Compressor
+    scribing: Craft Scribing Tools
+    research: Perform Thaumcraft Research
+    lazullia: Research Lazullia
+    lapisplates: Obtain Lapis Lazuli Plates
+    bbf: Bricked Blast Furnace
+    hobbyist: Hobbyist Steam Engine
+    centrifuge: Forestry Centrifuge
+    squeezer: Forestry Squeezer
+    simmering: Process Simmering Combs
+    lava: Process Phosphor into Lava
+    smeltery: TC Smeltery {
+        style: { stroke: forestgreen }
+    }
+    lvmotor: Craft LV Motors
+
+    xpbucket -> alloysmelter: redstone
+    alloysmelter -> bctank: obsidian glass
+    xpbucket -> bctank: obsidian
+    alloysmelter -> piston: red alloy
+    xpbucket -> cokeoven: clay dust
+    cobble -> cokeoven: sand
+    xpbucket -> rubber: sulfur\nrubber
+    piston -> compressor: piston
+    rubber -> scribing: rubber
+    scribing -> research: scribing tools
+    research -> lazullia
+    lazullia -> lapisplates: lapis dust
+    compressor -> lapisplates: compressor
+    xpbucket -> bbf: gypsum\ncalcite\nquartz sand\nclay dust\nstonedust
+    compressor -> bbf: firebrick
+    bbf -> hobbyist: steel
+    bbf -> centrifuge: steel
+    bbf -> squeezer: steel
+    lapisplates -> hobbyist: lapis plate
+    hobbyist -> simmering: RF
+    hobbyist -> lava: RF
+    simmering -> lava: phosphor
+    centrifuge -> simmering: centrifuge
+    squeezer -> lava: squeezer
+    lava -> smeltery: lava
+    rubber -> lvmotor: rubber
+    xpbucket -> lvmotor: copper\niron\nredstone
+    lvmotor -> centrifuge: motor
+    lvmotor -> squeezer: motor
+}
+agewood.tank -> agexp.xpbucket: filled XP bucket {
+    style: { stroke: tomato }
+}
+agedirt.mobfarm -> agexp.scribing: glass bottle (witch, rare drops)\nfeather (sniper skeleton)\nink sac (various mobs) {
+    style: { stroke: tomato }
+}
+agewood.researchtable -> agexp.research: research table {
+    style: { stroke: tomato }
+}
+agedirt.librarian -> agexp.research: bookshelf {
+    style: { stroke: tomato }
+}
+agewood.drowning -> agexp.bbf: water {
+    style: { stroke: tomato }
+}
+agedirt.beekeeper -> agexp.lava: simmering comb {
+    style: { stroke: tomato }
+}
+
+agelvhv: LV - HV Age {
+    ball: Ball Mold
+    lvcirc: LV Circuits
+    xpbucket: XP Buckets
+    mvcirc: MV Circuits
+    hvcirc: HV Circuits
+    questbook: Quest Book
+    mvlathe: MV Lathe
+    sifter: Sifter
+    wafer: Wafer
+    ebf: EBF
+    ramchips: RAM Chips
+    gslens: Green Sapphire Lens
+    scrapboxes: Scrap Boxes
+    ilcchips: Integrated Logic Chips
+    ignislens: Ignis Lens
+
+
+    ball -> lvcirc: vacuum tubes
+    xpbucket -> wafer: gallium\narsenic
+    ebf -> wafer
+    wafer -> mvcirc
+    lvcirc -> mvcirc
+    mvcirc -> hvcirc
+    questbook -> sifter: diamond ore\n(can't find those ores?)
+    sifter -> mvlathe: flawless diamond
+    mvlathe -> gslens
+    gslens -> ramchips
+    ramchips -> hvcirc
+    scrapboxes -> gslens: green sapphire
+    ilcchips -> hvcirc
+    ignislens -> ilcchips
+}
+agexp.smeltery -> agelvhv.ball: smeltery {
+    style: { stroke: tomato }
+}

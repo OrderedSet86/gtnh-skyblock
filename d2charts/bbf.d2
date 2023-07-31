@@ -1,0 +1,638 @@
+bbf_required: BBF Required {
+    firebricks: 36 firebricks
+    bbf_controller: BBF controller
+    bbf: {
+        style: { stroke: orange }
+    }
+    firebricks -> bbf: 32
+    firebricks -> bbf_controller: 4
+    bbf_controller -> bbf
+
+    ironfurnace: 4 iron furnaces
+    ironplate: 28 iron plates
+    furnaceironfurnace: 4 furnaces
+    ironfurnace -> bbf_controller
+    ironplate -> ironfurnace
+    furnaceironfurnace -> ironfurnace
+
+    firebrick: 216 firebrick
+    gypsum: 72 gypsum dust
+    bucketconcrete: 36 buckets of concrete
+    compressedfireclay: 216 compressed fireclay
+    firebrick -> firebricks
+    gypsum -> firebricks
+    bucketconcrete -> firebricks
+    compressedfireclay -> firebrick
+
+    fireclayburn: 216 burn items {
+        style: { stroke: tomato }
+    }
+    fireclaydust: 216 fireclay dust
+    brickdust: 108 brick dust
+    claydust: 108 clay dust
+    fireclayburn -> firebrick
+    fireclaydust -> compressedfireclay
+    brickdust -> fireclaydust
+    claydust -> fireclaydust
+
+    steamcompressor: steam compressor
+    smallbronze: 6 small bronze fluid pipe
+    bronzehull: 1 bronze hull
+    piston: 2 pistons
+    smallbronze -> steamcompressor
+    bronzehull -> steamcompressor
+    piston -> steamcompressor
+    steamcompressor -> compressedfireclay
+
+    calcite: 72 calcite dust
+    quartzsand: 36 quartz sand
+    stonedust: 36 stone dust
+    water: 36 water
+    sand: 36 sand
+    concreteclay: 36 clay dust
+    quartzsand -> bucketconcrete
+    calcite -> bucketconcrete
+    stonedust -> bucketconcrete
+    concreteclay -> bucketconcrete
+    water -> bucketconcrete
+    sand -> quartzsand
+
+    steel: 1 steel ingot
+    bbfburnable: 1 bbf burnable\nitemstack
+    bbf -> steel
+    bbfburnable -> steel
+
+    cauldron: 1 cauldron for:\nimpure gypsum\nimpure calcite\nimpure stone dust
+    cauldronplate: 7 iron plate
+    cauldronplate -> cauldron
+    cauldron -> bucketconcrete
+    cauldroningot: 14 iron ingot
+    cauldroningot -> cauldronplate
+
+    pipebronzeplate: 6 bronze plates
+    pipebronzeplate -> smallbronze
+    hullbronzeplate: 8 bronze plates
+    hullbronzeplate -> bronzehull
+    bronzeingot: 28 bronze ingots
+    bronzeingot -> pipebronzeplate
+    bronzeingot -> hullbronzeplate
+
+    hammercalcite: hammer
+    hammercalcite -> calcite {
+        style: { stroke-dash: 3 }
+    }
+    hammercalciteore: 72 calcite ore
+    hammercalciteore -> hammercalcite
+
+    maceratecalcite: macerator
+    maceratecalcite -> calcite {
+        style: { stroke-dash: 3 }
+    }
+    maceratecalciteore: 36 calcite ore
+    maceratecalciteore -> maceratecalcite
+    maceratecalcitetime: 20 sec
+    maceratecalcitetime -> maceratecalcite
+
+    hammergypsum: hammer
+    hammergypsum -> gypsum {
+        style: { stroke-dash: 3 }
+    }
+    hammergypsumore: 72 gypsum ore
+    hammergypsumore -> hammergypsum
+
+    macerategypsum: macerator
+    macerategypsum -> gypsum {
+        style: { stroke-dash: 3 }
+    }
+    macerategypsumore: 36 gypsum ore
+    macerategypsumore -> macerategypsum
+    macerategypsumtime: 20 sec
+    macerategypsumtime -> macerategypsum
+}
+macerator.macerator -> bbf_required.maceratecalcite
+
+stonedust {
+    stonedust: 36 stone dust
+    macerator {
+        macerator: steam macerator
+        stone: 36 stone/cobble\nstone=4.9s\ncobble=20s
+        stonedust: 36 stone dust
+        macerator -> stonedust
+        stone -> stonedust
+    }
+    macerator.stonedust -> stonedust {
+        style: { stroke-dash: 3 }
+    }
+
+    smallores: small ores {
+        stonedust: 36 stone dust
+        smallore: 72 small ores (average)
+        smallore -> stonedust
+    }
+    smallores.stonedust -> stonedust {
+        style: { stroke-dash: 3 }
+    }
+}
+stonedust.stonedust -> bbf_required.stonedust
+
+macerator {
+    macerator: steam-age macerator
+
+    sb: steam macerator {
+        macerator: steam macerator
+        diamond: 2 diamonds
+        bronzepipe: 2 small bronze fluid pipes
+        bronzehull: 1 bronze hull
+        piston: 2 pistons
+        diamond -> macerator
+        bronzepipe -> macerator
+        bronzehull -> macerator
+        piston -> macerator
+
+        pipebronzeplate: 2 (6) bronze plates
+        pipebronzeplate -> bronzepipe
+        hullbronzeplate: 8 bronze plates
+        hullbronzeplate -> bronzehull
+        bronzeingot: 20 (28) bronze ingots
+        bronzeingot -> pipebronzeplate
+        bronzeingot -> hullbronzeplate
+    }
+    sb.macerator -> macerator {
+        style: { stroke-dash: 3 }
+    }
+
+    # grinder: steam grinder {
+    #     grinder: steam grinder
+
+    #     controller: grinder controller
+    #     diamond: 2 diamonds
+    #     bronzehull: 4 bronze hulls
+    #     tumbagaframebox: 1 tumbaga frame box
+    #     piston: 2 pistons
+    #     diamond -> controller
+    #     bronzehull -> controller
+    #     tumbagaframebox -> controller
+    #     piston -> controller
+    #     controller -> grinder
+
+    #     bronzebricks: 14 bronze plated bricks\n(minimum)
+    #     bronzebricks -> grinder
+
+    #     tumbagarod: 8 tumbaga rods\n(pre-assembler)
+    #     tumbagarod -> tumbagaframebox
+    #     tumbagaingot: 8 tumbaga ingot
+    #     tumbagaingot -> tumbagarod
+    #     tumbagadust: 8 (10) tumbaga dust
+    #     golddust: 7 gold dust
+    #     copperdust: 3 copper dust
+    #     golddust -> tumbagadust
+    #     copperdust -> tumbagadust
+    #     burn: 8 burn items {
+    #         style: { stroke: tomato }
+    #     }
+    #     tumbagadust -> tumbagaingot
+    #     burn -> tumbagaingot
+    # }
+    # grinder.grinder -> macerator {
+    #     style: { stroke-dash: 3 }
+    # }
+}
+macerator.macerator -> stonedust.macerator.macerator
+
+bbfburn: BBF burnable {
+    bbfburn: burn items for\n1 steel ingot
+    240s {
+        coalcoke: 2 coal coke
+        sugarcoke: 8 sugar coke
+        cactuscoke: 8 cactus coke
+    }
+    240s.coalcoke -> bbfburn {
+        style: { stroke-dash: 3 }
+    }
+    240s.sugarcoke -> bbfburn {
+        style: { stroke-dash: 3 }
+    }
+    240s.cactuscoke -> bbfburn {
+        style: { stroke-dash: 3 }
+    }
+    360s {
+        coal: 4 coal/dust
+        charcoal: 4 charcoal/dust
+    }
+    360s.coal -> bbfburn {
+        style: { stroke-dash: 3 }
+    }
+    360s.charcoal -> bbfburn {
+        style: { stroke-dash: 3 }
+    }
+}
+bbfburn.bbfburn -> bbf_required.bbfburnable
+
+pistons {
+    pistons
+    loot {
+        infernal: infernal mob drops
+        villagers: tinker's construct houses\n(1 each)
+    }
+    loot.infernal -> pistons {
+        style: { stroke-dash: 3 }
+    }
+    loot.villagers -> pistons {
+        style: { stroke-dash: 3 }
+    }
+    craft {
+        piston: 1 piston
+        carpenters: 3 carpenter's block
+        fence: 1 fence
+        smallgear: 2 iron small gear
+        cobble: 2 cobblestone
+        redalloy: 1 red alloy plate
+        carpenters -> piston
+        fence -> piston
+        smallgear -> piston
+        cobble -> piston
+        redalloy -> piston
+
+        fenceplank: 3 planks
+        fencestick: 6 sticks
+        fenceplank -> fence
+        fencestick -> fence
+        wood: 1.5 wood
+        wood -> fenceplank
+
+        redalloyingot: 2 red alloy ingot
+        redalloyingot -> redalloy
+
+        ironrod: 4 iron rod
+        ironplate: 2 iron plate
+        ironrod -> smallgear
+        ironplate -> smallgear
+        ironingot: 8 iron ingot
+        ironingot -> ironrod
+        ironingot -> ironplate
+        wirecutters: wire cutters
+        wirecutters -> smallgear
+    }
+    craft.piston -> pistons {
+        style: { stroke-dash: 3 }
+    }
+}
+pistons.pistons -> bbf_required.piston
+pistons.pistons -> macerator.sb.piston
+# pistons.pistons -> macerator.grinder.piston
+
+carpenters: carpenter's block {
+    carpenters: 8 carpenter's blocks
+    wood {
+        carpenters: 8 carpenter's blocks
+        woodframe: 16 wood frame box
+        woodscrew: 16 wood screw
+        woodframe -> carpenters
+        woodscrew -> carpenters
+
+        stick: 64 sticks
+        stick -> woodframe
+
+        saw
+        file
+        screwstick: 16 sticks
+        screwstick -> woodscrew
+        saw -> woodscrew
+        file -> woodscrew
+    }
+    wood.carpenters -> carpenters {
+        style: { stroke-dash: 3 }
+    }
+    iron {
+        carpenters: 8 carpenter's blocks
+        woodframe: 6 wood frame box
+        ironscrew: 2 iron screw
+        woodframe -> carpenters
+        ironscrew -> carpenters
+
+        stick: 24 sticks
+        stick -> woodframe
+
+        saw
+        file
+        ingot: 2 iron ingot
+        ingot -> ironscrew
+        saw -> ironscrew
+        file -> ironscrew
+    }
+    iron.carpenters -> carpenters {
+        style: { stroke-dash: 3 }
+    }
+}
+carpenters.carpenters -> pistons.craft.carpenters
+
+redalloy: Red Alloy Ingots {
+    redalloy: Red Alloy Ingots
+    loot: chest loot {
+        redalloy: Red Alloy Ingots
+    }
+    loot.redalloy -> redalloy {
+        style: { stroke-dash: 3 }
+    }
+    craft {
+        redalloy: 1 red alloy ingot
+        alloysmelter: steam alloy smelter
+        redstone: 4 redstone
+        copper: 1 copper
+        alloysmelter -> redalloy
+        redstone -> redalloy
+        copper -> redalloy
+
+        smallbronze: 6 small bronze fluid pipe
+        smallbronze -> alloysmelter
+        furnace: 2 furnace
+        furnace -> alloysmelter
+        brickedbronze: 1 bricked bronze hull
+        brickedbronze -> alloysmelter
+
+        pipebronzeplate: 6 bronze plates
+        pipebronzeplate -> smallbronze
+
+        hullbronzeplate: 5 bronze plates
+        hullbronzeplate -> brickedbronze
+        brickblocks: 3 brick blocks
+        brickblocks -> brickedbronze
+
+        bronzeingot: 22 bronze ingots
+        bronzeingot -> pipebronzeplate
+        bronzeingot -> hullbronzeplate
+    }
+    craft.redalloy -> redalloy {
+        style: { stroke-dash: 3 }
+    }
+}
+redalloy.redalloy -> pistons.craft.redalloyingot
+
+brickblocks: brick {
+    brickblocks: brick blocks
+    worldgen {
+        railcraft: village railcraft houses
+        roguelike: roguelike brick houses
+    }
+    worldgen.railcraft -> brickblocks {
+        style: { stroke-dash: 3 }
+    }
+    worldgen.roguelike -> brickblocks {
+        style: { stroke-dash: 3 }
+    }
+    craft {
+        brickblock: 1 brick block
+        bricks: 4 bricks
+        manual: manual
+        compressor: compressor\n(required)
+        water: 0.5 water bucket
+        bricks -> compressor
+        bricks -> manual
+        water -> manual
+        manual -> brickblock {
+            style: { stroke-dash: 3 }
+        }
+        compressor -> brickblock {
+            style: { stroke-dash: 3 }
+        }
+
+        furnace
+        unfired: 4 unfired clay brick
+        burn: 4 burn items {
+            style: { stroke: tomato }
+        }
+        furnace -> bricks
+        unfired -> bricks
+        burn -> bricks
+
+        clay: 4 clay
+        brickmold: 1 brick mold
+        clay -> unfired
+        brickmold -> unfired
+    }
+    craft.brickblock -> brickblocks {
+        style: { stroke-dash: 3 }
+    }
+}
+brickblocks.brickblocks -> redalloy.craft.brickblocks
+
+brickdust {
+    brickdust: 1 brick dust
+    macerator {
+        brickdust: 1 brick dust
+        macerator: steam macerator
+        brickblock: 1 brick block
+        timeblock: 1.05 sec
+        macerator -> brickdust
+        brickblock -> brickdust
+        timeblock -> brickdust
+    }
+    macerator.brickdust -> brickdust {
+        style: { stroke-dash: 3 }
+    }
+    manual {
+        brickdust: 1 brick dust
+        mortar: 1/8 flint mortar
+        brick: 4 bricks
+        brick -> brickdust
+        mortar -> brickdust
+    }
+    manual.brickdust -> brickdust {
+        style: { stroke-dash: 3 }
+    }
+}
+brickdust.brickdust -> bbf_required.brickdust
+brickblocks.brickblocks -> brickdust.macerator.brickblock
+macerator.macerator -> brickdust.macerator.macerator
+brickblocks.craft.bricks -> brickdust.manual.brick
+
+cokeoven: Coke Oven {
+    required {
+        sand: 2st+47 sand
+        clay: 1st+41 clay
+        form: wooden brick form
+        unfired: 104 unfired coke oven brick
+        burn: 104 burn items {
+            style: { stroke: tomato }
+        }
+        cokebrick: 104 coke oven bricks
+        cokeoven: 26 coke oven brick
+        cokeoven_multi: 1 coke oven multiblock {
+            style: { stroke: orange }
+        }
+        cokeoven -> cokeoven_multi
+
+        crafting: crafting table
+        wood: 2 wood
+        flint: 2 flint
+        knife: flint knife
+        knifeflint: 1 flint
+        stick: 1 stick
+        plank: 2 planks
+        stickwood: 1 wood
+        furnace
+        cobble: 6 cobblestone
+        furnaceflint: 3 flint
+
+        sand -> unfired
+        clay -> unfired
+        form -> unfired
+        unfired -> cokebrick
+        burn -> cokebrick
+        cokebrick -> cokeoven
+        wood -> crafting
+        flint -> crafting
+        crafting -> unfired
+        knife -> form
+        knifeflint -> knife
+        stick -> knife
+        plank -> stick
+        stickwood -> plank
+        furnace -> cokebrick
+        cobble -> furnace
+        furnaceflint -> furnace
+    }
+
+    paper {
+        paper: 4 paper
+        manual {
+            woodpulp: 16 wood pulp
+            bucket: fired clay bucket
+            burn: 1 burn item {
+                style: { stroke: tomato }
+            }
+            claydust: 5 clay dust
+            clay: 20 clay
+            paper: 4 paper
+            water: 2 water
+            mortar: 1 + 1/8 flint mortar
+            cobblestone: 10 cobblestone
+            stoneburn: 10 burn item {
+                style: { stroke: tomato }
+            }
+            stone: 10 stone
+            flint: 4 flint
+            filledbucket: water buckets
+
+            clay -> claydust
+            claydust -> bucket
+            burn -> bucket
+            water -> filledbucket
+            bucket -> filledbucket
+            woodpulp -> paper
+            filledbucket -> paper
+            stone -> mortar
+            flint -> mortar
+            mortar -> claydust
+            cobblestone -> stone
+            stoneburn -> stone
+            mortar -> woodpulp
+        }
+        village {
+            paper: find 4 paper in birch witchery house
+        }
+        manual.paper -> paper {
+            style: { stroke-dash: 3 }
+        }
+        village.paper -> paper {
+            style: { stroke-dash: 3 }
+        }
+    }
+
+    paper.paper -> required.form
+}
+cokeoven.required.cokeoven_multi -> bbfburn.240s.sugarcoke
+cokeoven.required.cokeoven_multi -> bbfburn.240s.cactuscoke
+cokeoven.required.cokeoven_multi -> bbfburn.360s.charcoal
+
+claydust {
+    claydust: 1 clay dust
+    hardened {
+        claydust: 1 clay dust
+        hardened: 1 hardened clay
+        mortar: 1/32 flint mortar
+        macerator
+        hardened -> claydust
+        mortar -> claydust {
+            style: { stroke-dash: 3 }
+        }
+        macerator -> claydust {
+            style: { stroke-dash: 3 }
+        }
+    }
+    hardened.claydust -> claydust {
+        style: { stroke-dash: 3 }
+    }
+    clay {
+        claydust: 1 clay dust
+        smallclaydust: 4 small piles of clay dust
+        smallclaydust -> claydust
+        clay: 4 clay
+        mortar: 1/8 flint mortar
+        clay -> smallclaydust
+        mortar -> smallclaydust
+    }
+    clay.claydust -> claydust {
+        style: { stroke-dash: 3 }
+    }
+}
+claydust.claydust -> bbf_required.claydust
+claydust.claydust -> bbf_required.concreteclay
+macerator.macerator -> claydust.hardened.macerator
+
+diamonds {
+    diamond: 1 diamond
+    mobs {
+        diamond: 1 diamonds
+        diamondblock: 1 diamond block
+        inferno: inferno infernal\n(8-15 modifiers)
+        inferno -> diamondblock
+        inferno -> diamond
+        diamondblock -> diamond
+        ultra: ultra infernal (5-10 modifiers)
+        ultra -> diamond
+    }
+    mobs.diamond -> diamond {
+        style: { stroke-dash: 3 }
+    }
+    smallore: small diamond ore {
+        diamond: 1 diamond
+        smallore: small diamond ore\n(? drop rate)
+        smallore -> diamond
+    }
+    smallore.diamond -> diamond {
+        style: { stroke-dash: 3 }
+    }
+    oreproc: ore processing {
+        diamond: 1 diamond
+        diamondore: 1 diamond ore
+        furnace
+        diamondore -> diamond
+        furnace -> diamond
+
+        pick: mining level 4 pick
+        pick -> diamondore
+        bronzepick: bronze TC pick + 1 level
+        bronzepick -> pick {
+            style: { stroke-dash: 3 }
+        }
+        mining: mine 666 blocks\n(mining level up)
+        mining -> bronzepick {
+            style: { stroke-dash: 3 }
+        }
+        head: head modifier\n(+1 mining level)\n(creeper head only?)
+        head -> bronzepick {
+            style: { stroke-dash: 3 }
+        }
+    }
+    oreproc.diamond -> diamond {
+        style: { stroke-dash: 3 }
+    }
+    loot: chest loot {
+        diamonds
+    }
+    loot.diamonds -> diamond {
+        style: { stroke-dash: 3 }
+    }
+}
+diamonds.diamond -> macerator.sb.diamond
